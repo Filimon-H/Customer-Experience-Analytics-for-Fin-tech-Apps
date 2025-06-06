@@ -1,0 +1,18 @@
+2025-06-06 12:00:35,364 - INFO - \U0001f504 Fetching reviews...
+2025-06-06 12:00:36,107 - INFO - \u2705 Saved 10 reviews to Dashen_reviews_20250606_120036.csv
+2025-06-06 12:50:38,035 - INFO - \U0001f504 Fetching reviews...
+2025-06-06 12:50:39,455 - INFO - \u2705 Saved 448 reviews to Dashen_reviews_20250606_125039.csv
+2025-06-06 12:56:26,037 - INFO - \U0001f504 Fetching reviews for all apps...
+2025-06-06 12:56:26,037 - INFO - \U0001f4f1 Scraping: Dashen Bank
+2025-06-06 12:56:27,645 - INFO - \u2705 Saved 448 reviews to Dashen_Bank_reviews_20250606_125627.csv
+2025-06-06 12:56:27,645 - INFO - \U0001f4f1 Scraping: Commercial Bank of Ethiopia
+2025-06-06 12:56:32,651 - INFO - \u2705 Saved 5000 reviews to Commercial_Bank_of_Ethiopia_reviews_20250606_125632.csv
+2025-06-06 12:56:32,651 - INFO - \U0001f4f1 Scraping: Bank of Abyssinia
+2025-06-06 12:56:34,352 - INFO - \u2705 Saved 1045 reviews to Bank_of_Abyssinia_reviews_20250606_125634.csv
+2025-06-06 13:08:02,935 - INFO - \U0001f504 Fetching reviews for all apps...
+2025-06-06 13:08:02,935 - INFO - \U0001f4f1 Scraping: Dashen Bank
+2025-06-06 13:08:04,031 - INFO - \u2705 Saved 448 reviews to Dashen_Bank_reviews_20250606_130804.csv
+2025-06-06 13:08:04,031 - INFO - \U0001f4f1 Scraping: Commercial Bank of Ethiopia
+2025-06-06 13:08:16,757 - INFO - \u2705 Saved 5000 reviews to Commercial_Bank_of_Ethiopia_reviews_20250606_130816.csv
+2025-06-06 13:08:16,757 - INFO - \U0001f4f1 Scraping: Bank of Abyssinia
+2025-06-06 13:08:18,813 - INFO - \u2705 Saved 1045 reviews to Bank_of_Abyssinia_reviews_20250606_130818.csv
