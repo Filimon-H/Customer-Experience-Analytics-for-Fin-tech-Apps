@@ -1,56 +1,41 @@
+import spacy
 import pandas as pd
-import os
 
-def preprocess_reviews(input_path, output_path=None):
+# Load English spaCy model
+nlp = spacy.load("en_core_web_sm", disable=["ner", "parser"])  # We only need tokenization & lemmatization
+
+def clean_text_spacy(text):
     """
-    Cleans and preprocesses Google Play review data.
-    
-    Parameters:
-    - input_path (str): Path to the raw CSV file.
-    - output_path (str): Path to save the cleaned CSV (optional).
-    
-    Returns:
-    - pd.DataFrame: The cleaned DataFrame.
+    Tokenizes, removes stop words, and lemmatizes text using spaCy.
+    Keeps only alphabetic tokens and excludes stopwords and punctuation.
     """
-    try:
-        # Load data
-        df = pd.read_csv(input_path)
+    doc = nlp(text.lower())
+    tokens = [
+        token.lemma_ for token in doc
+        if token.is_alpha and not token.is_stop
+    ]
+    return " ".join(tokens)
 
-        # Drop duplicates
-        df = df.drop_duplicates()
+#def preprocess_reviews(df, text_column="review"):
+    """
+    Applies spaCy-based preprocessing to a specified text column in a DataFrame.
+    Adds a new column called 'cleaned_review'.
+    """
+    df["cleaned_review"] = df[text_column].astype(str).apply(clean_text_spacy)
+    return df
 
-        # Drop rows with missing values in important fields
-        df = df.dropna(subset=['review_text', 'rating', 'date'])
-
-        # Convert 'date' column to datetime format
-        df['date'] = pd.to_datetime(df['date'], errors='coerce')
-        df = df.dropna(subset=['date'])  # Drop rows with invalid dates
-
-        # Format date to YYYY-MM-DD
-        df['date'] = df['date'].dt.strftime('%Y-%m-%d')
-
-        # Rename columns to match final schema
-        df = df.rename(columns={
-            'review_text': 'review',
-            'bank_name': 'bank'
-        })
-
-        # Keep only the required columns
-        df = df[['review', 'rating', 'date', 'bank', 'source']]
-
-        # Determine output file path
-        if not output_path:
-            folder, filename = os.path.split(input_path)
-            name, ext = os.path.splitext(filename)
-            output_path = os.path.join(folder, f"{name}_cleaned.csv")
-
-        # Save cleaned data
-        df.to_csv(output_path, index=False)
-        print(f"✅ Cleaned data saved to: {output_path}")
-
-        return df
-
-    except Exception as e:
-        print(f"❌ Error during preprocessing: {e}")
-        return None
-
+def preprocess_reviews(df, text_column):
+    import spacy
+    nlp = spacy.load("en_core_web_sm", disable=["ner", "parser"])
+    
+    def clean_text(text):
+        doc = nlp(str(text))
+        tokens = [
+            token.lemma_.lower()
+            for token in doc
+            if not token.is_stop and not token.is_punct and token.is_alpha
+        ]
+        return " ".join(tokens)
+    
+    df["cleaned_review"] = df[text_column].apply(clean_text)
+    return df   # ✅ THIS LINE IS REQUIRED
